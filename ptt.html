@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>spider</title>
+    </head>
+</html>
+<body>
+    <div id="app">
+        <h1>PTT股版文章(前三頁)</h1> 
+        <table style="text-align:left;" border="1" cellpadding="0" cellspacing="0" class="Table" id='pttdata'>
+            <tr v-for='(item, index) in url_data'>
+             <template v-for='items in item'>
+                <tr>
+                   <td>標題: {{ items.title }}</td>
+                   <td>作者: {{ items.author }}</td>
+                   <td>日期: {{ items.date }} </td>                  
+                   <td><a :href="`https://www.ptt.cc${items.link}`">URL</a></td>
+                </tr>
+             </template>
+            </tr>
+        </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script type="text/javascript" src="ptt.js"></script>
+</body>
