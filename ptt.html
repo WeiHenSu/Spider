@@ -1,27 +1,104 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- bootstrap v4.6 -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&family=Open+Sans:wght@300&display=swap" rel="stylesheet">  
+        
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>spider</title>
     </head>
 </html>
 <body>
-    <div id="app">
-        <h1>PTT股版文章(前三頁)</h1> 
-        <table style="text-align:left;" border="1" cellpadding="0" cellspacing="0" class="Table" id='pttdata'>
-            <tr v-for='(item, index) in url_data'>
-             <template v-for='items in item'>
-                <tr>
-                   <td>標題: {{ items.title }}</td>
-                   <td>作者: {{ items.author }}</td>
-                   <td>日期: {{ items.date }} </td>                  
-                   <td><a :href="`https://www.ptt.cc${items.link}`">URL</a></td>
-                </tr>
-             </template>
-            </tr>
-        </table>
-    </div>
+    <!-- navbar -->
+    <header>
+        <div class="container" >
+            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                <a class="navbar-brand" href="https://github.com/WeiHenSu/Spider">
+                    <img src="./picture/git.png">
+                </a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                      <a class="nav-link "> GitHub </a>
+                    </li>
+                  </ul>
+                  <!-- <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form> -->
+                </div>
+              </nav>
+        </div>
+    </header>
+    
+    
+    <section id="intro">
+        <div class="jumbotron bg-dark text-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="display-3">PTT股版文章</h1>
+                        <p class="lead"><i>#Vue #Nodejs #Express #Html #Bootstrap</i></p> 
+                        <a class="btn" href = '#'>觀看文章列表</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+
+    <section id="app">
+        <div class="jombotron bg-light" >
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h3>Latest Posts</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 offset-md-2 text-center">
+                        <ul v-for='(item, index) in url_data' >
+                            <template v-for='items in item'>
+                            <div class="outer">
+                                <div class="upper">
+                                    <a :href="`https://www.ptt.cc${items.link}`">
+                                        <img src="./picture/pic.jpg" >
+                                    </a>
+                                        <div class="innertext" >
+                                            <h4>{{ items.title }}</h4>     
+                                        </div>
+                                </div>
+                            </div>
+                            </template >
+                        </ul>
+                    </div>
+                </div> 
+             </div>
+        </div>
+    </section>
+
+    <section id="second">
+        <div class="container"></div>
+            <div class="jumbotron bg-dark text-white">
+                <div class="row">
+                <div class="col-md-8 offset-md-2 text-left">
+                <h3 class>PTT爬蟲</h1>
+                <p>使用Nodejs獲取PTT 最新幾筆post(前三頁)</p>
+                <p>使用express建立API</p>
+                <p>使用Vue進行前端編寫</p>    
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script type="text/javascript" src="ptt.js"></script>
 </body>
