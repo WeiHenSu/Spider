@@ -1,101 +1,97 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!-- bootstrap v4.6 -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&family=Open+Sans:wght@300&display=swap" rel="stylesheet">  
-        
-        <link rel="stylesheet" href="css/style.css">
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>spider</title>
-    </head>
+  <head>
+    <!-- bootstrap v4.6 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&family=Open+Sans:wght@300&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>spider</title>
+  </head>
 </html>
 <body>
-    <!-- navbar -->
-    <header>
-        <div class="container" >
-            <nav class="navbar navbar-expand-lg navbar-light bg-white">
-                <a class="navbar-brand" href="https://github.com/WeiHenSu/Spider">
-                    <img src="./picture/git.png">
-                </a>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                      <a class="nav-link "> GitHub </a>
-                    </li>
-                  </ul>
-                  <!-- <form class="form-inline my-2 my-lg-0">
+  <!-- navbar -->
+  <header>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <a class="navbar-brand" href="https://github.com/WeiHenSu/Spider">
+          <img src="./picture/git.png" />
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link"> GitHub </a>
+            </li>
+          </ul>
+          <!-- <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                   </form> -->
-                </div>
-              </nav>
         </div>
-    </header>
-    
-    
-    <section id="intro">
-        <div class="jumbotron bg-dark text-white">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="display-3">PTT股版文章</h1>
-                        <p class="lead"><i>#Vue #Nodejs #Express #Html #Bootstrap</i></p> 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    
+      </nav>
+    </div>
+  </header>
 
-    <section id="app">
-        <div class="jombotron bg-white" >
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h3>Latest Posts</h3>
-                    </div>
-                </div>
-                <div v-for='(item, index) in url_data' class="row">
-                    <div v-for='items in item' class="col-md-4 text-center" :style="{display: items.title!=''?'block':'none'}">
-                        <div class="outer">
-                            <div class="upper">
-                                <p>Date : {{ items.date }}</p>
-                                <img src="./picture/pic.jpg" >
-                                <div class="innertext" >
-                                    <a :href="`https://www.ptt.cc${items.link}`">
-                                        <h4>{{ items.title }}</h4>
-                                    </a>
-                                    <h6>Posted by  {{ items.author }}</h6>     
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-             </div>
+  <section id="intro">
+    <div class="jumbotron bg-dark text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="display-3">PTT股版文章</h1>
+            <p class="lead"><i>#Vue #Nodejs #Express #Html #Bootstrap</i></p>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section id="second">
-        <div class="container"></div>
-            <div class="jumbotron bg-dark text-white">
-                <div class="row">
-                <div class="col-md-8 offset-md-2 text-left">
-                <h3 class>PTT爬蟲</h1>
-                <p>使用Nodejs獲取PTT 最新幾筆post(前三頁)</p>
-                <p>使用express建立API</p>
-                <p>使用Vue進行前端編寫</p>    
-                </div>
-                </div>
-            </div>
+  <section id="app">
+    <div class="jombotron bg-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h3>Latest Posts</h3>
+          </div>
         </div>
-    </section>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-    <script type="text/javascript" src="ptt.js"></script>
+        <div class="row h-100" v-for="(x,i) in url_data">
+          <div class="col-md-4 text-center" v-for="(items,index) in url_data[i]" :style="{display: items.title!=''?'block':'none'}">
+            <div class="outer h-100">
+              <div class="upper h-100 d-flex flex-column justify-content-between text-center">
+                <p>Date : {{ items.date }}</p>
+                <div><img src="./picture/pic.jpg" style="width: 120px; height: 120px" /></div>
+                <div class="h-100 d-flex flex-column justify-content-between">
+                  <a :href="`https://www.ptt.cc${items.link}`" class="mb-auto">
+                    <h4>{{ items.title }}</h4>
+                  </a>
+                  <h6 class="pt-auto">Posted by {{ items.author }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="second">
+    <div class="container"></div>
+    <div class="jumbotron bg-dark text-white">
+      <div class="row">
+        <div class="col-md-8 offset-md-2 text-left">
+          <h3 class>PTT爬蟲</h3>
+          <p>使用Nodejs獲取PTT 最新幾筆post(前三頁)</p>
+          <p>使用express建立API</p>
+          <p>使用Vue進行前端編寫</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script type="text/javascript" src="ptt.js"></script>
 </body>
