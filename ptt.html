@@ -46,7 +46,6 @@
                     <div class="col-md-12">
                         <h1 class="display-3">PTT股版文章</h1>
                         <p class="lead"><i>#Vue #Nodejs #Express #Html #Bootstrap</i></p> 
-                        <a class="btn" href = '#'>觀看文章列表</a>
                     </div>
                 </div>
             </div>
@@ -56,29 +55,27 @@
     
 
     <section id="app">
-        <div class="jombotron bg-light" >
+        <div class="jombotron bg-white" >
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <h3>Latest Posts</h3>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-8 offset-md-2 text-center">
-                        <ul v-for='(item, index) in url_data' >
-                            <template v-for='items in item'>
-                            <div class="outer">
-                                <div class="upper">
+                <div v-for='(item, index) in url_data' class="row">
+                    <div v-for='items in item' class="col-md-4 text-center" :style="{display: items.title!=''?'block':'none'}">
+                        <div class="outer">
+                            <div class="upper">
+                                <p>Date : {{ items.date }}</p>
+                                <img src="./picture/pic.jpg" >
+                                <div class="innertext" >
                                     <a :href="`https://www.ptt.cc${items.link}`">
-                                        <img src="./picture/pic.jpg" >
+                                        <h4>{{ items.title }}</h4>
                                     </a>
-                                        <div class="innertext" >
-                                            <h4>{{ items.title }}</h4>     
-                                        </div>
+                                    <h6>Posted by  {{ items.author }}</h6>     
                                 </div>
                             </div>
-                            </template >
-                        </ul>
+                        </div>
                     </div>
                 </div> 
              </div>
