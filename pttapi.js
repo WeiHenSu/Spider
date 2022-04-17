@@ -3,46 +3,47 @@ var cheerio = require("cheerio")
 var express = require("express")
 var cors = require("cors")
 var app = express()
-var data = []
 
-var options = {
-  method: "GET",
-  url: "https://www.ptt.cc/bbs/Stock/index.html",
-}
 
 app.use(cors()) //解決cors問題
+
 app.get("/", function (req, res) {  //express
     (async function () {
-      var post = await getpost()
+      var post = await getPost()
       res.json(post)
     })()
   }).listen(3000)
 
-async function doRequest(options) {
+  var options = {
+    method: "GET",
+    url: "https://www.ptt.cc/bbs/Stock/index.html",
+  }
+
+function doRequest(options) { //取post資訊
   return new Promise(function (resolve, reject) {
-    request(options, function (error, res, body) {
-      const $ = cheerio.load(res.body)  //讀body
-      var list = $(".r-ent")
+    request(options, function (error, res) {
+      const $ = cheerio.load(res.body)
+      var list = $(".r-ent")    //每篇貼文的資訊存在r-ent class裡
       let data = []
-      for (let i = 0; i < list.length; i++) {
-          const title = list.eq(i).find(".title a").text()
+        for (let i = 0; i < list.length; i++) {
+          const title = list.eq(i).find(".title a").text() 
           const author = list.eq(i).find(".meta .author").text()
           const date = list.eq(i).find(".meta .date").text()
           const link = list.eq(i).find(".title a").attr("href")
           data.push({ title, author, date, link })
-      }
-      if (!error && res.statusCode == 200) {  //HTTP 200 代表網頁正常
+        }
+        if (!error && res.statusCode == 200) {  //HTTP 200 代表網頁正常
           resolve(data)
-      } else {
+        }else{
           reject(error)
-      }
+        }
     })
   })
 }
 
-async function getPageIndex(options) {
+function getPageIndex(options) {  //取總頁
   return new Promise(function (resolve, reject) {
-    request(options, function (error, res, body) {
+    request(options, function (error, res) {
       const $ = cheerio.load(res.body)
       let prev = $(".btn-group-paging a").eq(1).attr("href").match(/\d+/)[0] 
       if (!error && res.statusCode == 200) {
@@ -53,22 +54,17 @@ async function getPageIndex(options) {
     })
   })
 }
-// async function main() {
-//   let res = await doRequest("https://www.ptt.cc/bbs/Stock/index" + "5009" + ".html")
-//   console.log(res)
-// }
 
-async function getpost() {
-  return new Promise(async (resolve, reject) => {     //await -> 暫停此 async 函式的執行，並且等待傳遞至表達式的 Promise 的解析
+
+async function getPost() {    //將三頁的資訊push進data
     let prev = await getPageIndex(options)
-    console.log(prev) //5014 page
-    data = []
-    for (var i = parseInt(prev) - 1; i <= parseInt(prev) + 1; i++) {
-      const res = await doRequest("https://www.ptt.cc/bbs/Stock/index" + i + ".html")
-      data.push(res)  // 二維
+    // console.log(prev) 4993 page
+    let data = []
+    for (var i = parseInt(prev) - 1; i <= parseInt(prev) + 1; i++) {    //取三頁
+      let res = await doRequest("https://www.ptt.cc/bbs/Stock/index" + i + ".html")
+      data.push(res)
     }
-    console.log(data[0].length + data[1].length + data[2].length)
-    resolve(data)
-  })
+    // console.log(data[0].length + data[1].length + data[2].length)
+    return data
 }
 
