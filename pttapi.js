@@ -21,8 +21,8 @@ app.get("/", function (req, res) {  //express
 
 function doRequest(options) { //取post資訊
   return new Promise(function (resolve, reject) {
-    request(options, function (error, res) {
-      const $ = cheerio.load(res.body)
+    request(options, function (error, res, body) {
+      const $ = cheerio.load(body)
       var list = $(".r-ent")    //每篇貼文的資訊存在r-ent class裡
       let data = []
         for (let i = 0; i < list.length; i++) {
@@ -43,8 +43,8 @@ function doRequest(options) { //取post資訊
 
 function getPageIndex(options) {  //取總頁
   return new Promise(function (resolve, reject) {
-    request(options, function (error, res) {
-      const $ = cheerio.load(res.body)
+    request(options, function (error, res, body) {
+      const $ = cheerio.load(body)
       let prev = $(".btn-group-paging a").eq(1).attr("href").match(/\d+/)[0] 
       if (!error && res.statusCode == 200) {
           resolve(prev)

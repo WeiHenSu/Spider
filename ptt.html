@@ -29,10 +29,6 @@
               <a class="nav-link"> GitHub </a>
             </li>
           </ul>
-          <!-- <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                  </form> -->
         </div>
       </nav>
     </div>
@@ -59,17 +55,17 @@
             <h3>Latest Posts</h3>
           </div>
         </div>
-        <div class="row h-100" v-for="(x,i) in url_data">
+        <div class="row" v-for="(x,i) in url_data">
           <div class="col-md-4 text-center" v-for="(items,index) in url_data[i]" :style="{display: items.title!=''?'block':'none'}">
             <div class="outer h-100">
               <div class="upper h-100 d-flex flex-column justify-content-between text-center">
                 <p>Date : {{ items.date }}</p>
-                <div><img src="./picture/pic.jpg" style="width: 120px; height: 120px" /></div>
-                <div class="h-100 d-flex flex-column justify-content-between">
-                  <a :href="`https://www.ptt.cc${items.link}`" class="mb-auto">
+                <div><img src="./picture/pic.jpg"/></div>
+                <div class="inner h-100 d-flex flex-column justify-content-between">
+                  <a :href="`https://www.ptt.cc${items.link}`">
                     <h4>{{ items.title }}</h4>
                   </a>
-                  <h6 class="pt-auto">Posted by {{ items.author }}</h6>
+                  <h6>Posted by {{ items.author }}</h6>
                 </div>
               </div>
             </div>
